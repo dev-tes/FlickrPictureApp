@@ -13,6 +13,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 5
+        layout.itemSize = CGSize(width: view.frame.size.width, height: view.frame.size.height/3)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -37,7 +38,10 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath)
+        guard let cell =
+                collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as? PhotosCollectionViewCell
+        else { return UICollectionViewCell() }
+        cell.configureCollectionView()
         return cell
     }
 

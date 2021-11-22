@@ -12,28 +12,24 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     private var myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "house")
-        imageView.backgroundColor = .systemYellow
         return imageView
     }()
     
     private var favouriteIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "star.circle")
-        imageView.backgroundColor = .systemYellow
         return imageView
     }()
     
     private var imageTitleLabel: UILabel = {
         let title = UILabel()
         title.text = "Image title"
-        title.backgroundColor = .systemGreen
         return title
     }()
     
     private var ownersNameLabel: UILabel = {
         let title = UILabel()
         title.text = "John Doe"
-        title.backgroundColor = .systemGreen
         return title
     }()
     
@@ -41,10 +37,10 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .systemRed
-        contentView.addSubview(myImageView)
-        contentView.addSubview(imageTitleLabel)
-        contentView.addSubview(ownersNameLabel)
-        contentView.addSubview(favouriteIcon)
+        addSubview(myImageView)
+        myImageView.addSubview(imageTitleLabel)
+        addSubview(ownersNameLabel)
+        myImageView.addSubview(favouriteIcon)
     }
     
     override func layoutSubviews() {
@@ -54,19 +50,36 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     func customizeConstraint() {
         myImageView.frame = contentView.frame
-        NSLayoutConstraint.activate([
-            favouriteIcon.topAnchor.constraint(equalTo: myImageView.topAnchor, constant: 10),
-            favouriteIcon.trailingAnchor.constraint(equalTo: myImageView.trailingAnchor, constant: 10),
-            
-            imageTitleLabel.bottomAnchor.constraint(equalTo: myImageView.bottomAnchor, constant: -30),
-            imageTitleLabel.leadingAnchor.constraint(equalTo: myImageView.leadingAnchor, constant: 10),
-            
-            ownersNameLabel.bottomAnchor.constraint(equalTo: myImageView.bottomAnchor, constant: -10),
-            ownersNameLabel.leadingAnchor.constraint(equalTo: imageTitleLabel.leadingAnchor)
-            
-        ])
+        favouriteIcon.frame = CGRect(
+            x: contentView.frame.size.width - 50,
+            y: 10,
+            width: 40,
+            height: 40
+        )
+        imageTitleLabel.frame = CGRect(
+            x: 10,
+            y: contentView.frame.size.height - 50,
+            width: contentView.frame.size.width - 40,
+            height: 40
+        )
+        ownersNameLabel.frame = CGRect(
+            x: 10,
+            y: contentView.frame.size.height - 110,
+            width: contentView.frame.size.width - 40,
+            height: 70
+        )
     }
     
+    public func configureCollectionView() {
+        
+    }
+    
+    override func prepareForReuse() {
+        myImageView.image = nil
+        imageTitleLabel.text = nil
+        ownersNameLabel.text = nil
+        favouriteIcon.image = nil
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
