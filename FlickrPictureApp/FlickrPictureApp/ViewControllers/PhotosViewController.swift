@@ -9,10 +9,13 @@ import UIKit
 
 class PhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    private var photos = [Photo]()
+    private var viewModels = [PhotoCollectionViewCellViewModel]()
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 5
+        layout.minimumLineSpacing = 0
         layout.itemSize = CGSize(width: view.frame.size.width, height: view.frame.size.height/3)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
@@ -27,21 +30,46 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemRed
         view.addSubview(collectionView)
         title = "Photos"
+        populateCollectionView()
 
     }
     
+    func populateCollectionView() {
+        APICaller.shared.fetchData { [weak self] data in
+            
+            switch data {
+            case .success(let photo):
+                print("The photo is \(photo.photo.count)")
+                self?.photos = photo.photo
+                self?.viewModels = (self?.photos.compactMap({
+                    PhotoCollectionViewCellViewModel(
+                        title: $0.title,
+                        ownername: $0.ownername,
+                        imageURL: $0.imageURL
+                    )
+                }))!
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+            case .failure(let error):
+                        print("The error is \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        30
+        viewModels.count
+//        30
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell =
                 collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as? PhotosCollectionViewCell
         else { return UICollectionViewCell() }
-        cell.configureCollectionView()
+        cell.configureCollectionView(with: viewModels[indexPath.row])
         return cell
     }
 

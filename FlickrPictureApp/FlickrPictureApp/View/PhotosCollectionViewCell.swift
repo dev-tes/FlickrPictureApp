@@ -18,18 +18,23 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     private var favouriteIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "star.circle")
+        imageView.tintColor = .white
         return imageView
     }()
     
     private var imageTitleLabel: UILabel = {
         let title = UILabel()
         title.text = "Image title"
+        title.textColor = .white
+        title.font = UIFont.systemFont(ofSize: 20)
         return title
     }()
     
     private var ownersNameLabel: UILabel = {
         let title = UILabel()
         title.text = "John Doe"
+        title.textColor = .white
+        title.font = UIFont.boldSystemFont(ofSize: 29.0)
         return title
     }()
     
@@ -70,8 +75,24 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         )
     }
     
-    public func configureCollectionView() {
+    public func configureCollectionView(with viewModel: PhotoCollectionViewCellViewModel) {
+        ownersNameLabel.text = viewModel.ownername
+        imageTitleLabel.text = viewModel.title
+        favouriteIcon.image = UIImage(systemName: "star.circle")
+        let urlString = viewModel.imageURL
         
+        if let data = viewModel.imageData {
+            myImageView.image = UIImage(data: data)
+        } else if let url = URL(string: urlString ?? "") {
+            URLSession.shared.dataTask(with: url) { data, _, error in
+                guard let data = data, error == nil else { return}
+                viewModel.imageData = data
+                DispatchQueue.main.async {
+                    self.myImageView.image = UIImage(data: data)
+                    print(data)
+                }
+            }.resume()
+        }
     }
     
     override func prepareForReuse() {
