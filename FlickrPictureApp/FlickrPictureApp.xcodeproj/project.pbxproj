@@ -19,6 +19,7 @@
 		048A2B72274C470700909629 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A2B71274C470700909629 /* APICaller.swift */; };
 		048A2B74274C49F000909629 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A2B73274C49F000909629 /* APIModel.swift */; };
 		048A2B76274C4EE700909629 /* PhotoCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A2B75274C4EE700909629 /* PhotoCollectionViewCellViewModel.swift */; };
+		048A2B84274CC4A400909629 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 048A2B81274CC4A400909629 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		048A2B71274C470700909629 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		048A2B73274C49F000909629 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		048A2B75274C4EE700909629 /* PhotoCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		048A2B82274CC4A400909629 /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
+		048A2B83274CC4A400909629 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 		048A2B50274BFC7100909629 /* FlickrPictureApp */ = {
 			isa = PBXGroup;
 			children = (
+				048A2B7D274CC40A00909629 /* Persistence */,
 				048A2B6A274C04E500909629 /* ViewControllers */,
 				048A2B69274C04B300909629 /* Delegates */,
 				048A2B68274C04A300909629 /* Network */,
@@ -131,6 +135,14 @@
 				048A2B6D274C089F00909629 /* TabBarViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		048A2B7D274CC40A00909629 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				048A2B81274CC4A400909629 /* DataModel.xcdatamodeld */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				048A2B6C274C07E100909629 /* FavouriteViewController.swift in Sources */,
+				048A2B84274CC4A400909629 /* DataModel.xcdatamodeld in Sources */,
 				048A2B76274C4EE700909629 /* PhotoCollectionViewCellViewModel.swift in Sources */,
 				048A2B56274BFC7100909629 /* PhotosViewController.swift in Sources */,
 				048A2B52274BFC7100909629 /* AppDelegate.swift in Sources */,
@@ -432,6 +445,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		048A2B81274CC4A400909629 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				048A2B82274CC4A400909629 /* TestModel.xcdatamodel */,
+				048A2B83274CC4A400909629 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 048A2B82274CC4A400909629 /* TestModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 048A2B46274BFC7100909629 /* Project object */;
 }
