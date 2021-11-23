@@ -27,6 +27,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         title.text = "Image title"
         title.textColor = .white
         title.font = UIFont.systemFont(ofSize: 20)
+        title.font = UIFont.preferredFont(forTextStyle: .body)
+        title.adjustsFontForContentSizeCategory = true
         return title
     }()
     
@@ -35,6 +37,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         title.text = "John Doe"
         title.textColor = .white
         title.font = UIFont.boldSystemFont(ofSize: 29.0)
+        title.font = UIFont.preferredFont(forTextStyle: .title1)
+        title.adjustsFontForContentSizeCategory = true
         return title
     }()
     

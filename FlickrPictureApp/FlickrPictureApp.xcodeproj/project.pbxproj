@@ -19,6 +19,7 @@
 		048A2B72274C470700909629 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A2B71274C470700909629 /* APICaller.swift */; };
 		048A2B74274C49F000909629 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A2B73274C49F000909629 /* APIModel.swift */; };
 		048A2B76274C4EE700909629 /* PhotoCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A2B75274C4EE700909629 /* PhotoCollectionViewCellViewModel.swift */; };
+		048A2B7C274CB9A800909629 /* DynamicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A2B7B274CB9A800909629 /* DynamicType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		048A2B71274C470700909629 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		048A2B73274C49F000909629 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		048A2B75274C4EE700909629 /* PhotoCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		048A2B7B274CB9A800909629 /* DynamicType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		048A2B50274BFC7100909629 /* FlickrPictureApp */ = {
 			isa = PBXGroup;
 			children = (
+				048A2B7A274CB98500909629 /* Styling */,
 				048A2B6A274C04E500909629 /* ViewControllers */,
 				048A2B69274C04B300909629 /* Delegates */,
 				048A2B68274C04A300909629 /* Network */,
@@ -131,6 +134,14 @@
 				048A2B6D274C089F00909629 /* TabBarViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		048A2B7A274CB98500909629 /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				048A2B7B274CB9A800909629 /* DynamicType.swift */,
+			);
+			path = Styling;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +222,7 @@
 				048A2B72274C470700909629 /* APICaller.swift in Sources */,
 				048A2B74274C49F000909629 /* APIModel.swift in Sources */,
 				048A2B6E274C089F00909629 /* TabBarViewController.swift in Sources */,
+				048A2B7C274CB9A800909629 /* DynamicType.swift in Sources */,
 				048A2B54274BFC7100909629 /* SceneDelegate.swift in Sources */,
 				048A2B70274C235900909629 /* PhotosCollectionViewCell.swift in Sources */,
 			);
