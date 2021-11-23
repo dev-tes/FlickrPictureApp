@@ -9,6 +9,8 @@ import UIKit
 
 class PhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: - Properties
+    
+    let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     private var photos = [Photo]()
     private var viewModels = [PhotoCollectionViewCellViewModel]()
     
