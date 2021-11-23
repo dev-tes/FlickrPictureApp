@@ -8,11 +8,13 @@
 import Foundation
 
 class PhotoCollectionViewCellViewModel {
+    // MARK: - Properties
     let title: String
     let ownername: String
     let imageURL: String?
     var imageData: Data? = nil
     
+    // MARK: - Initializer
     init(
         title: String,
         ownername: String,

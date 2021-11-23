@@ -13,15 +13,10 @@ class TabBarViewController: UITabBarController {
         view.backgroundColor = .systemBackground
            UITabBar.appearance().barTintColor = .systemBackground
            tabBar.tintColor = .systemBlue
-        
-//        DispatchQueue.main.async {
-//            self.tabBar.shadowImage = UIImage()
-//            self.tabBar.backgroundImage = UIImage()
-//            self.tabBar.backgroundColor = .systemBackground
-//            self.tabBarController?.tabBar.isHidden = true
-//        }
         setupVCs()
     }
+    
+    // MARK: - METHODS
     fileprivate func createNavController(for rootViewController: UIViewController, image: UIImage, title: String) -> UIViewController {
            let navController = UINavigationController(rootViewController: rootViewController)
            navController.tabBarItem.image = image

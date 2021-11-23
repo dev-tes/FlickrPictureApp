@@ -8,6 +8,7 @@
 import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
+    // MARK: - Properties
     static let identifier = "PhotosCollectionViewCell"
     private var myImageView: UIImageView = {
         let imageView = UIImageView()
@@ -42,7 +43,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         return title
     }()
     
-    
+    // MARK: - METHODS
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .systemRed

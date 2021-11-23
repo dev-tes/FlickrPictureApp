@@ -8,7 +8,7 @@
 import UIKit
 
 class PhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    
+    // MARK: - Properties
     private var photos = [Photo]()
     private var viewModels = [PhotoCollectionViewCellViewModel]()
     
@@ -27,7 +27,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         return collectionView
     }()
     
-
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemRed
@@ -37,6 +37,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     }
     
+    // MARK: - METHODS
     func populateCollectionView() {
         APICaller.shared.fetchData { [weak self] data in
             
@@ -60,9 +61,9 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
+    // MARK: - ColllectionView Delegate and data source stubs
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModels.count
-//        30
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
