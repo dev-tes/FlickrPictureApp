@@ -16,11 +16,14 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var favouriteIcon: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "star.circle")
-        imageView.tintColor = .white
-        return imageView
+    private var favouriteIconButton: UIButton = {
+      let button = UIButton()
+      button.addTarget(self, action: #selector(didTapFavouriteButton), for: .touchUpInside)
+      button.setBackgroundImage(UIImage(systemName: "star.circle"), for: .normal)
+      button.layer.cornerRadius = 50
+        button.backgroundColor = .green
+      button.tintColor = .white
+      return button
     }()
     
     private var imageTitleLabel: UILabel = {
@@ -50,7 +53,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         addSubview(myImageView)
         myImageView.addSubview(imageTitleLabel)
         addSubview(ownersNameLabel)
-        myImageView.addSubview(favouriteIcon)
+        myImageView.addSubview(favouriteIconButton)
     }
     
     override func layoutSubviews() {
@@ -60,7 +63,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     func customizeConstraint() {
         myImageView.frame = contentView.frame
-        favouriteIcon.frame = CGRect(
+        favouriteIconButton.frame = CGRect(
             x: contentView.frame.size.width - 50,
             y: 10,
             width: 40,
@@ -83,7 +86,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     public func configureCollectionView(with viewModel: PhotoCollectionViewCellViewModel) {
         ownersNameLabel.text = viewModel.ownername
         imageTitleLabel.text = viewModel.title
-        favouriteIcon.image = UIImage(systemName: "star.circle")
+        favouriteIconButton.setBackgroundImage(UIImage(systemName: "star.circle"), for: .normal)
         let urlString = viewModel.imageURL
         
         if let data = viewModel.imageData {
@@ -104,9 +107,14 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         myImageView.image = nil
         imageTitleLabel.text = nil
         ownersNameLabel.text = nil
-        favouriteIcon.image = nil
+        favouriteIconButton.setBackgroundImage(UIImage(), for: .normal)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func didTapFavouriteButton() {
+        
+    }
+    
 }

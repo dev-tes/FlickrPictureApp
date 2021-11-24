@@ -45,7 +45,6 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
             
             switch data {
             case .success(let photo):
-                print("The photo is \(photo.photo.count)")
                 self?.photos = photo.photo
                 self?.viewModels = (self?.photos.compactMap({
                     PhotoCollectionViewCellViewModel(
