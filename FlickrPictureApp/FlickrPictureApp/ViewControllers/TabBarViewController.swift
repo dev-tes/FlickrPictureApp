@@ -26,7 +26,7 @@ class TabBarViewController: UITabBarController {
        }
     func setupVCs() {
             viewControllers = [
-                createNavController(for: PhotosViewController(), image: UIImage(systemName: "photo.artframe") ?? UIImage(), title: "Photos"),
+                createNavController(for: PhotosViewController(), image: UIImage(systemName: "photo") ?? UIImage(), title: "Photos"),
                 createNavController(for: FavouriteViewController(), image: UIImage(systemName: "star.circle") ?? UIImage(), title: "Favorite")
             ]
         }

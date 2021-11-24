@@ -18,10 +18,10 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     private var favouriteIconButton: UIButton = {
       let button = UIButton()
+        button.isUserInteractionEnabled = true
       button.addTarget(self, action: #selector(didTapFavouriteButton), for: .touchUpInside)
       button.setBackgroundImage(UIImage(systemName: "star.circle"), for: .normal)
       button.layer.cornerRadius = 50
-        button.backgroundColor = .green
       button.tintColor = .white
       return button
     }()
@@ -97,7 +97,6 @@ class PhotosCollectionViewCell: UICollectionViewCell {
                 viewModel.imageData = data
                 DispatchQueue.main.async {
                     self.myImageView.image = UIImage(data: data)
-                    print(data)
                 }
             }.resume()
         }
@@ -114,7 +113,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func didTapFavouriteButton() {
-        
+        print("icon pressed o")
     }
     
 }
