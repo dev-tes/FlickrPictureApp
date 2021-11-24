@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: - Properties
@@ -36,7 +37,6 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         view.addSubview(collectionView)
         title = "Photos"
         populateCollectionView()
-
     }
     
     // MARK: - METHODS
