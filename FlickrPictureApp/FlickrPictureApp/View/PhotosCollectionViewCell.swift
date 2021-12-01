@@ -18,9 +18,9 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     private var favouriteIconButton: UIButton = {
       let button = UIButton()
-        button.isUserInteractionEnabled = true
-      button.addTarget(self, action: #selector(didTapFavouriteButton), for: .touchUpInside)
-      button.setBackgroundImage(UIImage(systemName: "star.circle"), for: .normal)
+        button.addTarget(self, action: #selector(didTapFavouriteButton), for: .touchUpInside)
+//      button.setBackgroundImage(UIImage(systemName: "star.circle"), for: .normal)
+        button.backgroundColor = .red
       button.layer.cornerRadius = 50
       button.tintColor = .white
       return button
@@ -61,6 +61,11 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         customizeConstraint()
     }
     
+    @objc func didTapFavouriteButton() {
+        print("icon pressed o")
+    }
+
+    
     func customizeConstraint() {
         myImageView.frame = contentView.frame
         favouriteIconButton.frame = CGRect(
@@ -87,6 +92,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         ownersNameLabel.text = viewModel.ownername
         imageTitleLabel.text = viewModel.title
         favouriteIconButton.setBackgroundImage(UIImage(systemName: "star.circle"), for: .normal)
+        favouriteIconButton.addTarget(self, action: #selector(didTapFavouriteButton), for: .touchUpInside)
         let urlString = viewModel.imageURL
         
         if let data = viewModel.imageData {
@@ -111,9 +117,4 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    @objc func didTapFavouriteButton() {
-        print("icon pressed o")
-    }
-    
 }

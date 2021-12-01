@@ -12,6 +12,8 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - Properties
     
     let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    private var persistedPhotos: [PersistedPhotos]?
+    
     private var photos = [Photo]()
     private var viewModels = [PhotoCollectionViewCellViewModel]()
     
@@ -36,6 +38,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         view.backgroundColor = .systemRed
         view.addSubview(collectionView)
         title = "Photos"
+        fetchPersistedPhotos()
         populateCollectionView()
     }
     
@@ -46,25 +49,70 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
             switch data {
             case .success(let photo):
                 self?.photos = photo.photo
-                self?.viewModels = (self?.photos.compactMap({
+                self?.persistedPhotos = (self?.photos.compactMap({
+                    let newPersistencePhotos = PersistedPhotos(context: self?.context ?? NSManagedObjectContext())
+                    newPersistencePhotos.ownersName = $0.ownername
+                    newPersistencePhotos.titleOfImage = $0.title
+                    newPersistencePhotos.isFavourite = false
+                    newPersistencePhotos.image = $0.imageURL
+                    
+                    do {
+                        try self?.context?.save()
+                    }
+                    catch {
+                        
+                    }
+                    self?.fetchPersistedPhotos()
+                    return newPersistencePhotos
+                }))
+                self?.viewModels = (self?.persistedPhotos?.compactMap({
                     PhotoCollectionViewCellViewModel(
-                        title: $0.title,
-                        ownername: $0.ownername,
-                        imageURL: $0.imageURL
+                        title: $0.titleOfImage ?? "Tesleem",
+                        ownername: $0.ownersName ?? " ",
+                        imageURL: $0.image ?? " "
                     )
                 }))!
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                 }
+                
+                // in case network fails
             case .failure(let error):
+                
+                // configure our viewmodel with what is in persistence
+                self?.viewModels = (self?.persistedPhotos?.compactMap({
+                    PhotoCollectionViewCellViewModel(
+                        title: $0.titleOfImage ?? "Tesleem",
+                        ownername: $0.ownersName ?? " ",
+                        imageURL: $0.image ?? " "
+                    )
+                }))!
+                
+                //display it
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
                         print("The error is \(error.localizedDescription)")
             }
+        }
+    }
+    
+    func fetchPersistedPhotos() {
+        do {
+            self.persistedPhotos = try context?.fetch(PersistedPhotos.fetchRequest())
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+        catch {
+            
         }
     }
     
     // MARK: - ColllectionView Delegate and data source stubs
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModels.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
